@@ -1713,19 +1713,10 @@ require("lazy").setup({
 	{
 		"echasnovski/mini.nvim",
 		config = function()
-			-- Better Around/Inside textobjects
-			--  - va)  - [V]isually select [A]round [)]paren
-			--  - yinq - [Y]ank [I]nside [N]ext [']quote
-			--  - ci'  - [C]hange [I]nside [']quote
-			-- require('mini.ai').setup({ n_lines = 500 })
-
-			-- saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-			-- sd'   - [S]urround [D]elete [']quotes
-			-- sr)'  - [S]urround [R]eplace [)] [']
-			-- require('mini.surround').setup()
-
 			require("mini.splitjoin").setup()
 			require("mini.hipatterns").setup()
+			require("mini.align").setup()
+			require("mini.sessions").setup({ autoread = true })
 			require("mini.move").setup({
 				mappings = {
 					-- Move selection in Visual mode
