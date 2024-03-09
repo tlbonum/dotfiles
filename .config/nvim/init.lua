@@ -1106,6 +1106,7 @@ require("lazy").setup({
 				}))
 			end, { desc = "[/] fuzzily search in current buffer" })
 
+			vim.keymap.set("n", "<leader>st", "<CMD>TodoTelescope<CR>", { desc = "[s]each [t]odos" })
 			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[s]earch [s]elect telescope" })
 			vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "search [g]it [f]iles" })
 			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[s]earch [f]iles" })
@@ -1145,27 +1146,39 @@ require("lazy").setup({
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			local trouble = require("trouble")
+			local tb = require("trouble")
+
 			vim.keymap.set("n", "<leader>xx", function()
-				trouble.toggle()
-			end, { desc = "Trouble Toggle" })
+				tb.toggle()
+			end, { desc = "toggle" })
+
 			vim.keymap.set("n", "<leader>xw", function()
-				trouble.toggle("workspace_diagnostics")
-			end, { desc = "Trouble Workspace Diagnostics" })
+				tb.toggle("workspace_diagnostics")
+			end, { desc = "diagnostics [w]orkspace" })
+
 			vim.keymap.set("n", "<leader>xd", function()
-				trouble.toggle("document_diagnostics")
-			end, { desc = "Trouble Document Diagnostics" })
+				tb.toggle("document_diagnostics")
+			end, { desc = "diagnostics [d]ocument" })
+
 			vim.keymap.set("n", "<leader>xq", function()
-				trouble.toggle("quickfix")
-			end, { desc = "Trouble Quickfix" })
+				tb.toggle("quickfix")
+			end, { desc = "[q]uickfix" })
+
 			vim.keymap.set("n", "<leader>xl", function()
-				trouble.toggle("loclist")
-			end, { desc = "Trouble Loclist" })
-			vim.keymap.set("n", "gR", function()
-				trouble.toggle("lsp_references")
-			end, { desc = "Trouble LSP References" })
-			-- vim.keymap.set("n", "[d", function() trouble.next({ skip_groups = true, jump = true }) end, { desc = "Go Next" })
-			-- vim.keymap.set("n", "]d", function() trouble.previous({ skip_groups = true, jump = true }) end, { desc = "Go Prev" })
+				tb.toggle("loclist")
+			end, { desc = "[l]oclist" })
+
+			vim.keymap.set("n", "<leader>tr", function()
+				tb.toggle("lsp_references")
+			end, { desc = "lsp [r]eferences" })
+
+			-- vim.keymap.set("n", "[d", function()
+			-- 	tb.next({ skip_groups = true, jump = true })
+			-- end, { desc = "next" })
+
+			-- vim.keymap.set("n", "]d", function()
+			-- 	tb.previous({ skip_groups = true, jump = true })
+			-- end, { desc = "prev" })
 		end,
 	},
 
@@ -1747,18 +1760,19 @@ require("lazy").setup({
 
 			tc.setup({
 				keywords = {
-					["@fix"] = { icon = " ", color = "error", alt = { "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } },
-					["@todo"] = { icon = " ", color = "info", alt = { "TODO" } },
-					["@hack"] = { icon = " ", color = "warning", alt = { "HACK" } },
-					["@warn"] = { icon = " ", color = "warning", alt = { "WARN", "WARNING", "XXX" } },
-					["@perf"] = { icon = " ", alt = { "PERF", "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-					["@note"] = { icon = " ", color = "hint", alt = { "NOTE", "INFO" } },
-					["@test"] = { icon = "⏲ ", color = "test", alt = { "TEST", "TESTING", "PASSED", "FAILED" } },
+					["FIX"] = { icon = " ", color = "error", alt = { "fix", "FIXME", "BUG", "FIXIT", "ISSUE" } },
+					["TODO"] = { icon = " ", color = "info", alt = { "todo" } },
+					["HACK"] = { icon = " ", color = "warning", alt = { "hack" } },
+					["WARN"] = { icon = " ", color = "warning", alt = { "warn", "WARNING", "XXX" } },
+					["PERF"] = { icon = " ", alt = { "perf", "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+					["NOTE"] = { icon = " ", color = "hint", alt = { "note", "INFO" } },
+					["TEST"] = { icon = "⏲ ", color = "test", alt = { "test", "TESTING", "PASSED", "FAILED" } },
 				},
 			})
 
 			vim.keymap.set("n", "]t", tc.jump_next, { desc = "next todo comment" })
 			vim.keymap.set("n", "[t", tc.jump_prev, { desc = "previous todo comment" })
+			vim.keymap.set("n", "<leader>xt", "<CMD>TodoQuickFix<CR>", { desc = "[t]odos" })
 		end,
 	},
 
