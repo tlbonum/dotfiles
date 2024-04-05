@@ -1,7 +1,8 @@
 set fish_greeting
 
 set -U fish_escape_delay_ms 10
-set -g EDITOR /opt/homebrew/bin/nvim
+set -g EDITOR /usr/local/bin/nvim
+set -g VISUAL /usr/local/bin/nvim
 set -g fish_key_bindings fish_vi_key_bindings
 # set -gx JAVA_HOME /var/lib/snapd/snap/android-studio/78/android-studio/jre
 set -gx ANDROID_HOME /home/thomas/Android/Sdk
@@ -11,6 +12,7 @@ set -gx FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT 1
 set -gx APOLLO_ELV2_LICENSE accept
 
 set fish_user_paths $PATH ~/.local/bin
+set fish_user_paths $PATH ~/.deno/bin
 set fish_user_paths $PATH /usr/local/bin
 set fish_user_paths $PATH /opt/homebrew/bin
 set fish_user_paths $PATH /usr/local/share/dotnet
@@ -66,7 +68,9 @@ end
 starship init fish | source
 enable_transience
 
+set -gx DIRENV_LOG_FORMAT ""
 direnv hook fish | source
+
 source_env ~/.env
 
 # The next line updates PATH for the Google Cloud SDK.
