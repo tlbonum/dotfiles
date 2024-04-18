@@ -85,8 +85,6 @@ config.keys = {
 	bind_super_key_to_vim("Enter", utf8.char(0xAF)),
 	-- bind_super_key_to_vim('.', utf8.char(0xAD)),
 
-	{ key = "§", mods = "CMD", action = wezterm.action_callback(sessions.toggle) },
-
 	{ key = '"', mods = "SHIFT|CTRL|ALT", action = "DisableDefaultAssignment" },
 	{ key = "%", mods = "SHIFT|CTRL|ALT", action = "DisableDefaultAssignment" },
 	{ key = "h", mods = "SHIFT|CTRL", action = "DisableDefaultAssignment" },
@@ -119,11 +117,12 @@ config.keys = {
 	{ key = "LeftArrow", mods = "CMD", action = wezterm.action({ SendString = "\x1bOH" }) },
 	{ key = "RightArrow", mods = "CMD", action = wezterm.action({ SendString = "\x1bOF" }) },
 
-  { key = '{', mods = 'SHIFT|ALT', action = wezterm.action.MoveTabRelative(-1) },
-  { key = '}', mods = 'SHIFT|ALT', action = wezterm.action.MoveTabRelative(1) },
+	{ key = '{', mods = 'SHIFT|ALT', action = wezterm.action.MoveTabRelative(-1) },
+	{ key = '}', mods = 'SHIFT|ALT', action = wezterm.action.MoveTabRelative(1) },
 
+	{ key = "`", mods = "CMD", action = wezterm.action_callback(sessions.toggle) },
 	{
-		key = '§',
+		key = '`',
 		mods = 'OPT',
 		action = wezterm.action.PromptInputLine({
 			description = 'Enter new name for tab',
