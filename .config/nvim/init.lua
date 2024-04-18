@@ -1842,7 +1842,7 @@ require("lazy").setup({
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "json", "javascript", "typescript", "vimdoc", "vim", "bash", "regex", "jsdoc", "graphql", "dockerfile", "yaml" },
+				ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "json", "javascript", "typescript", "vimdoc", "vim", "bash", "regex", "jsdoc", "graphql", "dockerfile", "yaml", "html" },
 				auto_install = true,
 				sync_install = false,
 				ignore_install = {},
@@ -2082,6 +2082,9 @@ require("lazy").setup({
 			-- ---------------------------------------------------------------------
 			--     surr*ound_words             ysiw)           (surround_words)
 			--     *make strings               ys$"            "make strings"
+
+			--     surr*ound_words             siw)           (surround_words)
+			--     *make strings               s$"            "make strings"
 			--     [delete ar*ound me!]        ds]             delete around me!
 			--     remove <b>HTML t*ags</b>    dst             remove HTML tags
 			--     'change quot*es'            cs'"            "change quotes"
@@ -2091,10 +2094,14 @@ require("lazy").setup({
 				keymaps = {
 					insert = "<C-g>s",
 					insert_line = "<C-g>S",
-					normal = "ys",
-					normal_cur = "yss",
-					normal_line = "yS",
-					normal_cur_line = "ySS",
+					normal = "s",
+					normal_cur = "ss",
+					normal_line = "S",
+					normal_cur_line = "SS",
+					-- normal = "ys",
+					-- normal_cur = "yss",
+					-- normal_line = "yS",
+					-- normal_cur_line = "ySS",
 					visual = "S",
 					visual_line = "gS",
 					delete = "ds",
@@ -2119,7 +2126,8 @@ require("lazy").setup({
 					}
 				}
 			})
-			vim.keymap.set({ "n", "x", "o" }, "s", function() f.jump() end, { desc = "Flash" })
+			-- vim.keymap.set({ "n", "x", "o" }, "s", function() f.jump() end, { desc = "Flash" })
+			vim.keymap.set({ "n", "x", "o" }, "<A>-f", function() f.jump() end, { desc = "Flash" })
 			-- vim.keymap.set({ "n", "x", "o" }, "S", function() f.treesitter() end, { desc = "Flash Treesitter" })
 			vim.keymap.set("o", "r", function() f.remote() end, { desc = "Remote Flash" })
 			vim.keymap.set({ "o", "x" }, "R", function() f.treesitter_search() end, { desc = "Treesitter Search" })
