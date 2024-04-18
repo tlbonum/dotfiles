@@ -11,6 +11,7 @@ set -gx NODE_OPTIONS --max_old_space_size=16384
 set -gx FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT 1
 set -gx APOLLO_ELV2_LICENSE accept
 
+set fish_user_paths $PATH /usr/local/go/bin
 set fish_user_paths $PATH ~/.local/bin
 set fish_user_paths $PATH ~/.deno/bin
 set fish_user_paths $PATH /usr/local/bin
@@ -30,26 +31,26 @@ set fish_user_paths $PATH ~/.zig
 set fish_user_paths $PATH /Applications/WezTerm.app/Contents/MacOS
 # set fish_user_paths $PATH ~/.jenv/bin
 
-set -gx PATH '/Users/thomas/.pyenv/shims' $PATH
-set -gx PYENV_SHELL fish
-set -g VIRTUALFISH_HOME ~/srcs
+# set -gx PATH '/Users/thomas/.pyenv/shims' $PATH
+# set -gx PYENV_SHELL fish
+# set -g VIRTUALFISH_HOME ~/srcs
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
-source '/opt/homebrew/Cellar/pyenv/2.3.36/completions/pyenv.fish'
-command pyenv rehash 2>/dev/null
-function pyenv
-  set command $argv[1]
-  set -e argv[1]
-
-  switch "$command"
-  case rehash shell
-    source (pyenv "sh-$command" $argv|psub)
-  case '*'
-    command pyenv "$command" $argv
-  end
-end
+# source '/opt/homebrew/Cellar/pyenv/2.3.36/completions/pyenv.fish'
+# command pyenv rehash 2>/dev/null
+# function pyenv
+#   set command $argv[1]
+#   set -e argv[1]
+#
+#  switch "$command"
+#  case rehash shell
+#    source (pyenv "sh-$command" $argv|psub)
+#  case '*'
+#    command pyenv "$command" $argv
+#  end
+# end
 
 # status --is-interactive; and pyenv virtualenv-init - | source
 # status --is-interactive; and source (jenv init -|psub)
@@ -74,5 +75,4 @@ direnv hook fish | source
 source_env ~/.env
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/thomas/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/home/thomas/Downloads/google-cloud-sdk/path.fish.inc'; end
-
+# if [ -f '/home/thomas/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/home/thomas/Downloads/google-cloud-sdk/path.fish.inc'; end
