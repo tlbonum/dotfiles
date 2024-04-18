@@ -1,0 +1,4 @@
+[core]
+	editor = /usr/local/bin/nvim
+[push]
+	autoSetupRemote = true
